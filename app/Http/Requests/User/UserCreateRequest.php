@@ -34,7 +34,8 @@ class UserCreateRequest extends FormRequest
             'username.unique:users' => 'Username is already taken',
             'phone_number.required' => 'A phone number is required',
             'phone_number.unique:users' => 'Phone number is already used',
-            'phone_number.max:16' => 'Too long phone number'
+            'phone_number.max:16' => 'Too long phone number',
+            'phone_number.regex' => 'The phone number must start with +, contain only numbers and be no more than 16 characters long'
         ];
     }
 }
