@@ -3,8 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Link;
-use App\Services\Link\LinkCreateService;
-use App\Services\Link\LinkUpdateService;
+use App\Services\Link\LinkService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -13,9 +12,9 @@ class LinkTest extends TestCase
 {
     public function testUpdate()
     {
-        $link = LinkCreateService::create();
+        $link = LinkService::create();
         $firstLink = $link->unique_link;
-        $link = LinkUpdateService::update($link);
+        $link = LinkService::update($link);
         $secondLink = $link->unique_link;
         $this->assertNotEquals($firstLink, $secondLink);
     }

@@ -4,15 +4,15 @@ namespace App\Services\User;
 
 use App\Models\User;
 use App\Models\Win;
-use App\Services\Link\LinkCreateService;
+use App\Services\Link\LinkService;
 use Illuminate\Support\Facades\DB;
 
-class UserCreateService
+class UserService
 {
     public static function create(array $data)
     {
         try {
-            $link = LinkCreateService::create();
+            $link = LinkService::create();
             $win = Win::create();
             $user = User::firstOrCreate(['phone_number' => $data['phone_number']], [
                 'username' => $data['username'],
@@ -25,6 +25,7 @@ class UserCreateService
             DB::rollBack();
             abort(500);
         }
+
         return $user;
     }
 }

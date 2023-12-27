@@ -4,19 +4,16 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserCreateRequest;
-use App\Models\User;
-use App\Models\Win;
-use App\Services\Link\LinkCreateService;
-use App\Services\Link\LinkGetService;
-use App\Services\User\UserCreateService;
+use App\Services\Link\LinkService;
+use App\Services\User\UserService;
 
 class UserCreateController extends Controller
 {
     public function __invoke(UserCreateRequest $request)
     {
         $data = $request->validated();
-        $user = UserCreateService::create($data);
-        $link = LinkGetService::getById($user->link_id);
+        $user = UserService::create($data);
+        $link = LinkService::getById($user->link_id);
         return redirect()->route('pageA', $link->unique_link);
     }
 }

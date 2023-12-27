@@ -11,16 +11,18 @@ class WinLuckyService
 {
     public static function randomLucky(string $winId)
     {
-        $win = Win::where('id', $winId)
-            ->firstOrFail();
+        $win = WinService::get($winId);
 
         $value = rand(1,1000);
 
         $winLucky = self::getWinOrLose($value);
+
         $win->win_amount += $winLucky;
         $win = WinHistoryService::addValueToHistory($winLucky, $win);
         $win->last_random_value = $value;
+
         $win->save();
+
         return $winLucky;
     }
 
@@ -35,6 +37,7 @@ class WinLuckyService
         } else {
             $win = $value / 100 * 10;
         }
+
         return $win;
     }
 
