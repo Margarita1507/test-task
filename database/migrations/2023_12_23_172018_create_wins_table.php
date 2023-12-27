@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('win_history');
             $table->string('last_random_value');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -26,9 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('wins', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
         Schema::dropIfExists('wins');
     }
 };

@@ -10,6 +10,8 @@ class LinkDeleteService
 {
     public static function delete(Link $link)
     {
+        User::where('link_id', $link->id)
+            ->delete();
         $link->delete();
         Link::where('updated_at', '<', now()->subWeek())
             ->delete();

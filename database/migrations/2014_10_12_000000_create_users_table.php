@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('link_id');
             $table->unsignedBigInteger('win_id');
             $table->timestamps();
-            $table->softDeletes();
 
             $table->index('link_id', 'user_link_idx');
             $table->index('win_id', 'user_win_idx');
@@ -33,9 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
         Schema::dropIfExists('users');
     }
 };

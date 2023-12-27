@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Win;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\StoreRequest;
+use App\Http\Requests\User\UserCreateRequest;
 use App\Models\Link;
 use App\Models\User;
 use App\Models\Win;
